@@ -1,11 +1,8 @@
-'user strict';
-
 var token = '<FB token>';
-var aiToken = '<api.ai token>';
+var aiToken = '<api.ai client access token>';
 
 var apiai = require('apiai');
 var ai = apiai(aiToken);
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -17,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-	'use strict';
 	res.send('hello.');
 });
 
