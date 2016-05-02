@@ -1,4 +1,4 @@
-var token = '<FB token>';
+var fbToken = '<FB page access token>';
 var aiToken = '<api.ai client access token>';
 
 var apiai = require('apiai');
@@ -7,7 +7,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
-var messagingEvents;
+var messageReceived;
 
 app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -17,19 +17,16 @@ app.get('/', function (req, res) {
 	res.send('hello.');
 });
 
-// for facebook verification
-app.get('/webhook/', function (req, res) {
-	'use strict';
+app.get('/bot-webhook/', function (req, res) {
 	if (req.query['hub.verify_token'] === 'your_verify_token') {
 		res.send(req.query['hub.challenge']);
 	}
 	res.send('Error, wrong token');
 });
 
-app.post('/webhook/', function (req, res) {
-	'use strict';
-	messagingEvents = req.body.entry[0].messaging;
-	for (var i = 0; i < messagingEvents.length; i++) {
+app.post('/bot-webhook/', function (req, res) {
+	messageReceived = req.body.entry[0].messaging;
+	for (var i = 0; i < messageReceived.length; i++) {
 		var event = req.body.entry[0].messaging[i];
 		var sender = event.sender.id;
 		if (event.message && event.message.text) {
@@ -46,7 +43,7 @@ app.post('/webhook/', function (req, res) {
 		}
 		if (event.postback) {
 			text = JSON.stringify(event.postback);
-			sendFBTextMessage(sender, 'Postback received: ' + text.substring(0, 200), token);
+			sendFBTextMessage(sender, 'Postback received: ' + text.substring(0, 200), fbToken);
 			continue;
 		}
 	}
@@ -60,7 +57,7 @@ function sendFBTextMessage(sender, text) {
 	};
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token: token},
+		qs: {access_token: fbToken},
 		method: 'POST',
 		json: {
 			recipient: {id: sender},
@@ -96,7 +93,7 @@ function sendFBTemplateMessage(sender, title, description, imgUrl) {
 	};
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
-		qs: {access_token: token},
+		qs: {access_token: fbToken},
 		method: 'POST',
 		json: {
 			recipient: {id: sender},
