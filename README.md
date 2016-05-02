@@ -3,8 +3,6 @@ AI Chat Bot
 
 Chat bot starter template using Node.js.  Utilizing the Facebook Messenger platform and conversational AI platform from [api.ai](http://api.ai). This repo was created as an experiment in chat bots and learning about Facebook's new Messenger platform.  Conversational AI APIs are becoming more abundant and this was a good opportunity to try one out as well. I tried [wit.ai](http://wit.ai) but it proved difficult to get up and running quickly.  I ultimately landed to [api.ai](http://api.ai) and loved that it could carry conversational small talk right out the gate with no training.
 
-Big thank you to [jw84](https://github.com/jw84/) for his FB Messenger tutorial [repo](https://github.com/jw84/messenger-bot-tutorial).
-
 
 Installation
 -----------
