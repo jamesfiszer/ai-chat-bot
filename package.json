@@ -1,0 +1,25 @@
+{
+  "name": "ai-chat-bot",
+  "version": "1.0.0",
+  "description": "AI chat bot utilizing Facebook Messenger platform and conversational AI API from api.ai.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "chat",
+    "bot",
+    "facebook",
+    "messeneger",
+    "api.ai"
+  ],
+  "author": "James Fiszer",
+  "license": "MIT",
+  "devDependencies": {
+    "apiai": "^2.0.1",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "request": "^2.72.0"
+  }
+}
